@@ -6,11 +6,13 @@ from environs import Env
 
 
 def handle_text(event, vk_api, project_id):
-    vk_api.messages.send(
-        user_id=event.user_id,
-        message=detect_intent_text(project_id, event.user_id, event.text, 'ru-RU'),
-        random_id=random.randint(1,1000)
-    )
+    response_text = detect_intent_text(project_id, event.user_id, event.text, 'ru-RU')
+    if response_text:
+        vk_api.messages.send(
+            user_id=event.user_id,
+            message=response_text,
+            random_id=random.randint(1,1000)
+        )
 
 
 def main():
