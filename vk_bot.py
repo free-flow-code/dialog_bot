@@ -1,8 +1,10 @@
 import random
 import vk_api as vk
+import telegram_send
 from vk_api.longpoll import VkLongPoll, VkEventType
-from google_cloud_funcs import create_api_key, detect_intent_text
+from google_cloud_funcs import detect_intent_text
 from environs import Env
+import logging
 
 
 def handle_text(event, vk_api, project_id):
@@ -22,10 +24,21 @@ def main():
     vk_session = vk.VkApi(token=env.str('VK_TOKEN'))
     vk_api = vk_session.get_api()
     longpoll = VkLongPoll(vk_session)
+    logging.basicConfig(
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        level=logging.INFO,
+        filename="vk_bot.log",
+        filemode="w"
+    )
+    logging.info('Бот запущен')
 
-    for event in longpoll.listen():
-        if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-            handle_text(event, vk_api, project_id)
+    try:
+        for event in longpoll.listen():
+            if event.type == VkEventType.MESSAGE_NEW and event.to_me:
+                handle_text(event, vk_api, project_id)
+    except Exception as err:
+        logging.exception(err)
+        telegram_send.send(messages=[f'{err}'])
 
 
 if __name__ == '__main__':

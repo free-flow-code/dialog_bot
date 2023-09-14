@@ -1,22 +1,10 @@
 import os
 from environs import Env, EnvError
-from telegram import Update, ForceReply, Bot
+from telegram import Update, ForceReply
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 from google_cloud_funcs import create_api_key, detect_intent_text
+import telegram_send
 import logging
-
-logger = logging.getLogger(__file__)
-
-
-class TelegramLogsHandler(logging.Handler):
-    def __init__(self, bot, user_id):
-        super().__init__()
-        self.bot = bot
-        self.user_id = user_id
-
-    def emit(self, record):
-        log_entry = self.format(record)
-        self.bot.send_message(text=log_entry, chat_id=self.user_id)
 
 
 def start(update: Update, context: CallbackContext) -> None:
@@ -38,14 +26,15 @@ def handle_text(update: Update, context: CallbackContext) -> None:
 def main():
     env = Env()
     env.read_env()
-    user_id = env.str('TG_USER_ID')
     tg_token = env.str('TG_TOKEN')
     project_id = env.str('PROJECT_ID')
 
-    bot = Bot(token=tg_token)
-    logger.setLevel(logging.DEBUG)
-    logger.propagate = False
-    logger.addHandler(TelegramLogsHandler(bot, user_id))
+    logging.basicConfig(
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        level=logging.INFO,
+        filename="telegram_bot.log",
+        filemode="w"
+    )
     logging.info('Бот запущен')
 
     try:
@@ -63,7 +52,8 @@ def main():
 
         updater.start_polling()
     except Exception as err:
-        logger.exception(err)
+        logging.exception(err)
+        telegram_send.send(messages=[f'{err}'])
 
 
 if __name__ == '__main__':
