@@ -95,3 +95,13 @@ python vk_bot.py
 ```
 python DialogFlow_learning_script.py -path путь_к/json/файлу
 ```
+
+## Ссылки на ботов
+
+**Telegram бота** можно потыкать [здесь](https://t.me/dddialog_bot).
+
+**Vk бот** находится [тут](https://vk.com/club222383857).
+
+Пример работы бота:
+
+![](https://i.ibb.co/sywgKs5/Gifius-ru.gif)
