@@ -34,7 +34,6 @@ def main():
         training_phrases_parts = value['questions']
         message_texts = [value['answer']]
         create_intent(project_id, display_name, training_phrases_parts, message_texts)
-        break
 
 
 if __name__ == '__main__':
