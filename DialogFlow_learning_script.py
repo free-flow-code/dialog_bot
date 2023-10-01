@@ -29,10 +29,10 @@ def main():
         file_contents = file.read()
 
     data_intents = json.loads(file_contents)
-    for key, value in data_intents.items():
-        display_name = key
-        training_phrases_parts = value['questions']
-        message_texts = [value['answer']]
+    for indent_name, training_data in data_intents.items():
+        display_name = indent_name
+        training_phrases_parts = training_data['questions']
+        message_texts = [training_data['answer']]
         create_intent(project_id, display_name, training_phrases_parts, message_texts)
 
 
