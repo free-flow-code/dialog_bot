@@ -2,7 +2,7 @@ import os
 from environs import Env, EnvError
 from telegram import Update, ForceReply
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
-from google_cloud_funcs import create_api_key, detect_intent_text
+from google_cloud import create_api_key, detect_intent_text
 import telegram_send
 import logging
 

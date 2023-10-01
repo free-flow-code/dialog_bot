@@ -1,4 +1,4 @@
-from google_cloud_funcs import create_intent
+from google_cloud import create_intent
 from environs import Env
 import argparse
 import json

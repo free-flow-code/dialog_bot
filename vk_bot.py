@@ -2,7 +2,7 @@ import random
 import vk_api as vk
 import telegram_send
 from vk_api.longpoll import VkLongPoll, VkEventType
-from google_cloud_funcs import detect_intent_text
+from google_cloud import detect_intent_text
 from environs import Env
 import logging
 
