@@ -19,7 +19,7 @@ def start(update: Update, context: CallbackContext) -> None:
 def handle_text(update: Update, context: CallbackContext) -> None:
     """Handle the user message."""
     project_id = os.getenv('PROJECT_ID')
-    user_id = os.getenv('TG_USER_ID')
+    user_id = f'tg-{os.getenv("TG_USER_ID")}'
     update.message.reply_text(detect_intent_text(project_id, user_id, update.message.text, 'ru-RU'))
 
 
