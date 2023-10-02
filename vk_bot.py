@@ -8,11 +8,11 @@ import logging
 
 
 def handle_text(event, vk_api, project_id):
-    response_text = detect_intent_text(project_id, f'vk-{event.user_id}', event.text, 'ru-RU')
-    if response_text:
+    dialogflow_response = detect_intent_text(project_id, f'vk-{event.user_id}', event.text, 'ru-RU')
+    if not dialogflow_response.intent.is_fallback:
         vk_api.messages.send(
             user_id=event.user_id,
-            message=response_text,
+            message=dialogflow_response.fulfillment_text,
             random_id=random.randint(1,1000)
         )
 
