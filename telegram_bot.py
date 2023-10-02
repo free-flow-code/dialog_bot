@@ -19,8 +19,8 @@ def start(update: Update, context: CallbackContext) -> None:
 def handle_text(update: Update, context: CallbackContext) -> None:
     """Handle the user message."""
     project_id = os.getenv('PROJECT_ID')
-    user_id = f'tg-{os.getenv("TG_USER_ID")}'
-    response_text = detect_intent_text(project_id, user_id, update.message.text, 'ru-RU')
+    session_id = f'tg-{update.message.from_user.id}'
+    response_text = detect_intent_text(project_id, session_id, update.message.text, 'ru-RU')
     if response_text:
         update.message.reply_text(response_text)
 

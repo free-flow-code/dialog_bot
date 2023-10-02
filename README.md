@@ -45,7 +45,6 @@ gcloud auth application-default login
 Затем в директории с программой создайте `.env` файл:
 
 ```
-TG_USER_ID='ваш telegram id'
 TG_TOKEN='токен telegram бота'
 VK_TOKEN='токен группы вк'
 PROJECT_ID='id проекта Google Cloud'

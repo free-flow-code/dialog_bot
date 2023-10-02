@@ -55,7 +55,7 @@ def detect_intent_text(project_id, session_id, text, language_code):
     )
     if not response.query_result.intent.is_fallback:
         return response.query_result.fulfillment_text
-    return False
+    return None
 
 
 def create_intent(project_id, display_name, training_phrases_parts, message_texts):
