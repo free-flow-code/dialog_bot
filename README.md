@@ -1,5 +1,15 @@
 ## Диалоговый бот для службы поддержки
-Состоит из трех скриптов:
+
+- [Описание](#description)
+- [Как установить](#install)
+- [Запуск ботов](#start)
+- [Обучение нейросети](#learning)
+- [Запуск в docker](#launch)
+- [Ссылки на ботов](#links)
+
+## Описание <a name="description"></a>
+
+Проект состоит из трех скриптов:
 
 **telegram_bot.py** - бот для Telegram.
 
@@ -7,7 +17,7 @@
 
 **DialogFlow_learning_script.py** - скрипт для обучения нейросети на DialogFlow.
 
-### Как установить
+### Как установить <a name="install"></a>
 
 Python3 должен быть уже установлен. 
 Затем используйте `pip` (или `pip3`, есть конфликт с Python2) для установки зависимостей:
@@ -51,7 +61,7 @@ PROJECT_ID='id проекта Google Cloud'
 GOOGLE_APPLICATION_CREDENTIALS='путь к json файлу'
 ```
 
-### Запуск ботов
+### Запуск ботов <a name="start"></a>
 
 Прежде, чем запускать ботов, необходимо настроить отправление отчетов об ошибках в ваш Telegram.
 В терминале выполните команду:
@@ -72,7 +82,7 @@ python telegram_bot.py
 python vk_bot.py
 ```
 
-## Обучение нейросети DialogFlow
+## Обучение нейросети DialogFlow <a name="learning"></a>
 
 Для обучения понадобится `json`-файл с тренировочными данными. Структура файла должна быть такой:
 ```
@@ -95,16 +105,16 @@ python vk_bot.py
 python DialogFlow_learning_script.py -path путь_к/json/файлу
 ```
 
-## Запуск на сервере
+## Запуск на сервере <a name="launch"></a>
 
 На VPS необходимо наличие [Docker](https://www.docker.com/) и
 [docker-compose](https://www.docker.com/). Склонируйте репозиторий и запустите:
 
 ```
-docker-compose -f compose.yaml up -d
+docker-compose up -d
 ```
 
-## Ссылки на ботов
+## Ссылки на ботов <a name="links"></a>
 
 **Telegram бота** можно потыкать [здесь](https://t.me/dddialog_bot).
 
