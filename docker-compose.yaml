@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  dialog_bot:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: dialog_bot
+    restart: always
+    env_file:
+      - .env

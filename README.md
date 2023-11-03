@@ -95,6 +95,15 @@ python vk_bot.py
 python DialogFlow_learning_script.py -path путь_к/json/файлу
 ```
 
+## Запуск на сервере
+
+На VPS необходимо наличие [Docker](https://www.docker.com/) и
+[docker-compose](https://www.docker.com/). Склонируйте репозиторий и запустите:
+
+```
+docker-compose -f compose.yaml up -d
+```
+
 ## Ссылки на ботов
 
 **Telegram бота** можно потыкать [здесь](https://t.me/dddialog_bot).
